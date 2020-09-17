@@ -1,0 +1,46 @@
+!!KEEP 	THE FOLLOWING POINTS IN MIND!!
+
+//FOR SETTING up the Enviroment of CGI AND API =
+
+Step.1:- Install Apache webserver, using pip install apcache..or yum install apache
+
+Step 2:Webserver will give You two folders
+	cd/var/www/html = put html file here..
+	cd/var/www/cgi-bin = put python api file here.
+
+step 3:Afer creating Html and python file.. make them executable , using chmod +x "file 	name". (This will turn , the colur of file from white to green)
+
+
+//For RUNNING api and cgi prgm
+Start the apachewebserver:- systemctl start httpd
+Disable firewall of selinux= systemctl disable firewalld
+			     setenforce 0	
+
+		//FOR CREATING API [python program]=
+
+add this on top:
+#!/usr/bin/python3  = Program is run by browser so need to  tell browser , which 			      language we are using.
+
+print("content-type:text/html")
+print()				
+				=Browsr send output to usr, so they need HEADER 					  content type.
+import cgi
+form=cgi.FieldStorage()
+cmd=form.getvalue("VARIABLE NAME IN WHICH INPUT TAKEN IN HTML")
+ = for taking input from html  and sending to python progm.
+
+
+		//for creating HTML programs
+1-Html whole  content is in between
+<form>
+<form>
+
+2- For redirecting output of HTML to any other PYTHON page, use=
+   <form action="url of that python page stored in cgi-bin foder">
+
+3-for taking INPUT in html.. that is to create a box=
+  USE= 	ENTER THE NAME : <input name ="x" type="text" />
+
+4=for new line
+	<br />
+5 = to create a submit button, use <type = "AGREE">
